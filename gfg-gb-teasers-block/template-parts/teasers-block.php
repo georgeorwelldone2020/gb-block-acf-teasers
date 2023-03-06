@@ -52,36 +52,59 @@ if( !empty($block['align']) ) {
 // ---------------------------------------------------
 ?>
 
-<figure id="<?php echo esc_attr($id); ?>" class="customBlocks <?php echo esc_attr($className); ?>">
+<div id="<?php echo esc_attr($id); ?>" class="b12 customBlocks <?php echo esc_attr($className); ?>">
 
-	<div class="blockTitle"><h3>Teasers Block</h3></div>
+	<?php if( have_rows('gbTeasers') ):
 
-	<?php if( have_rows('gbTeasers') ): ?>
+		$teaserCount = 0;
+		$teaersMarkupArray = array();
 
-		<ul>
+		while( have_rows('gbTeasers') ): the_row();
 
-		<?php while( have_rows('gbTeasers') ): the_row();
-
+			$teaserCount++;
 			$teaserObject = get_sub_field('gbTeaser');
 			$teaserID = $teaserObject->ID;
 			$teaserTitle = $teaserObject->post_title;
-			$teaserURL = get_permalink($teaserID);
-			$teaserThumbnail = get_the_post_thumbnail( $teaserID, 'medium' ); ?>
+			$teaserURL = esc_url( get_permalink($teaserID) );
+			$teaserThumbnail = get_the_post_thumbnail( $teaserID, 'medium' );
 
-			<a href="<?php echo esc_url( $teaserURL ); ?>">
+			/*  Use single quotes for raw HTML and curly braces around PHP variables */
+			$teaserMarkup = "<a href='{$teaserURL}'>";
+			$teaserMarkup .= 	$teaserThumbnail;
+			$teaserMarkup .= 	$teaserTitle;
+			$teaserMarkup .= "</a>";
 
-				<?php echo $teaserThumbnail; ?>
-				<?php echo $teaserTitle; ?>
+			array_push($teaersMarkupArray, $teaserMarkup);
 
-			</a>
+		endwhile;
 
-		<?php endwhile; ?>
+		if ( $teaserCount === 1 ) {
+			$teaserGridVal = '12';
+		} elseif ( $teaserCount === 2 ) {
+			$teaserGridVal = '6';
+		} elseif ( $teaserCount === 3 ) {
+			$teaserGridVal = '4';
+		} elseif ( $teaserCount === 4 ) {
+			$teaserGridVal = '3';
+		} elseif ( $teaserCount === 5 ) {
+			$teaserGridVal = '20';
+		} elseif ( $teaserCount === 6 ) {
+			$teaserGridVal = '2';
+		} else {
+			$teaserGridVal = '4';
+		} ?>
 
-		</ul>
+		<div class="b12 teasers">
+			<?php foreach ($teaersMarkupArray as $teaser) { ?>
+				<div class="b<?php echo $teaserGridVal; ?> teaser">
+					<?php echo $teaser; ?>
+				</div>
+			<?php } ?>
+		</div>
 
 	<?php endif; ?>
 
-</figure>
+</div>
 
 <?php
 // ---------------------------------------------------
