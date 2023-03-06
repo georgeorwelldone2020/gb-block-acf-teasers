@@ -1,0 +1,1 @@
+console.log('Custom Block Frontend Javascript is used. Drom Custom Block »gfg-gb-teasers-block«');

@@ -1,0 +1,72 @@
+[
+    {
+        "key": "group_6405ca335dcc4",
+        "title": "»GB Block Teasers« Group",
+        "fields": [
+            {
+                "key": "field_6405ca337c93f",
+                "label": "Teasers",
+                "name": "gbTeasers",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "table",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "",
+                "button_label": "Eintrag hinzufügen",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_6405ca9dcb1ca",
+                        "label": "Teaser",
+                        "name": "gbTeaser",
+                        "aria-label": "",
+                        "type": "post_object",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": "",
+                        "taxonomy": "",
+                        "return_format": "object",
+                        "multiple": 0,
+                        "allow_null": 0,
+                        "ui": 1,
+                        "parent_repeater": "field_6405ca337c93f"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf\/teasers"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    }
+]
